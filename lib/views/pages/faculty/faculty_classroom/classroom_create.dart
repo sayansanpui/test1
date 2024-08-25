@@ -176,62 +176,73 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
                   width: screenWidth,
                   items: ["Theory", "Lab"]),
               SizedBox(height: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Enter total number of students",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  TextField(
-                    onChanged: (String value) {
-                      inputTotalStudents = value;
-                    },
-                    cursorColor: const Color.fromARGB(255, 0, 0, 0),
-                    decoration: InputDecoration(
-                      hintText: "Enter total number of students",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 30, 30, 30),
-                            width: 1.0),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: const Color.fromARGB(255, 0, 0, 0),
-                            width: 1.0),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  RoundedButton(
-                      btnName: "Submit",
-                      callback: () {
-                        print("Department Name: $department_name");
-                        print("Section: $section");
-                        print("Subject Name: $subject_name");
-                        print("Subject Code: $subject_code");
-                        print("Session: $session");
-                        print("Year: $year");
-                        print("Semester: $semester");
-                        print("Semester Type: $semester_type");
-                        print("Class Type: $class_type");
-                        print("Total Students: $inputTotalStudents");
-                      }),
-                  SizedBox(height: 30),
-                ],
-              )
+              InputSection(),
+              SizedBox(height: 20),
+              RoundedButton(
+                  padding: 10,
+                  borderRadius: 10,
+                  textStyle: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                  btnName: "Submit",
+                  callback: () {
+                    print("Department Name: $department_name");
+                    print("Section: $section");
+                    print("Subject Name: $subject_name");
+                    print("Subject Code: $subject_code");
+                    print("Session: $session");
+                    print("Year: $year");
+                    print("Semester: $semester");
+                    print("Semester Type: $semester_type");
+                    print("Class Type: $class_type");
+                    print("Total Students: $inputTotalStudents");
+                  }),
+              SizedBox(height: 30),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Column InputSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Enter total number of students",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        TextField(
+          onChanged: (String value) {
+            if (int.tryParse(value) != null) {
+              inputTotalStudents = value;
+            }
+          },
+          keyboardType: TextInputType.number,
+          cursorColor: const Color.fromARGB(255, 0, 0, 0),
+          decoration: InputDecoration(
+            hintText: "Enter total number of students",
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: const Color.fromARGB(255, 30, 30, 30), width: 1.0),
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: const Color.fromARGB(255, 0, 0, 0), width: 1.0),
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
