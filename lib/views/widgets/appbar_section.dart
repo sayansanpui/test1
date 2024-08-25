@@ -27,10 +27,10 @@ AppBar AppBarWidget(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Icon(Icons.arrow_back_ios, color: Colors.blue),
+                      Icon(Icons.arrow_back_ios, color: Colors.black),
                       Text("Back",
                           style: TextStyle(
-                              color: Colors.blue,
+                              color: Colors.black,
                               fontSize: 20,
                               fontWeight: FontWeight.bold)),
                     ],

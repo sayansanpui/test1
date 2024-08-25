@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/views/pages/faculty/faculty_classroom/classroom_create.dart';
 import 'package:my_app/views/pages/faculty/faculty_classroom/faculty_classroom.dart';
+import 'package:my_app/views/pages/faculty/faculty_login/faculty_login.dart';
 import 'package:my_app/views/pages/front_page/front_page.dart';
 import 'package:my_app/views/pages/profile/profile.dart';
 // import 'package:my_app/views/pages/faculty/faculty_login/faculty_login.dart';
@@ -21,6 +22,8 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => FrontPage(),
+        "/faculty/login": (context) => FacultyLogin(),
+        "/admin/login": (context) => FacultyLogin(),
         "/faculty/classroom": (context) => FacultyClassroom(),
         "/profile": (context) => Profile(),
         "/create/classroom": (context) => ClassroomCreate()
