@@ -30,11 +30,7 @@ class _FacultyClassroomState extends State<FacultyClassroom> {
       if (response.statusCode == 200) {
         List<dynamic> data = jsonDecode(response.body);
         setState(() {
-          // myArray = data;
           myArray.addAll(data);
-
-          // myArray.addAll(data);
-          // myArray.addAll(data);
           _isLoading = false;
         });
       } else {
@@ -43,7 +39,6 @@ class _FacultyClassroomState extends State<FacultyClassroom> {
     } catch (e) {
       // print(e);
     } finally {
-      // Ensure _isLoading is set to false in both success and error scenarios
       setState(() {
         _isLoading = false;
       });
@@ -55,10 +50,12 @@ class _FacultyClassroomState extends State<FacultyClassroom> {
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarWidget(context, true, true),
+      appBar: AppBarWidget(context, true, "Classroom"),
       body: _isLoading
           ? Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+              ),
             )
           : ListView(
               children: myArray.isEmpty
@@ -76,7 +73,6 @@ class _FacultyClassroomState extends State<FacultyClassroom> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         onPressed: () {
-          // Add your button's onPressed logic here
           Navigator.pushNamed(context, "/create/classroom");
         },
         child: Icon(

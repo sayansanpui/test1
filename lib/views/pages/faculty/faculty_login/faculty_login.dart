@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/views/widgets/appbar_section.dart';
 
 class FacultyLogin extends StatelessWidget {
   const FacultyLogin({super.key});
@@ -8,15 +9,16 @@ class FacultyLogin extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       /////////////////////////////////////////////////////////////////////////////////
-      appBar: AppBar(
-        toolbarHeight: 80.0,
-        title: const Padding(
-          padding: EdgeInsets.only(left: 15.0),
-          child: Text("Attendance Management",
-              style: TextStyle(color: Colors.white)),
-        ),
-        backgroundColor: Colors.black,
-      ),
+      appBar: AppBarWidget(context, false, "Faculty Login"),
+      // appBar: AppBar(
+      //   toolbarHeight: 80.0,
+      //   title: const Padding(
+      //     padding: EdgeInsets.only(left: 15.0),
+      //     child: Text("Attendance Management",
+      //         style: TextStyle(color: Colors.black)),
+      //   ),
+      //   backgroundColor: Colors.white,
+      // ),
       /////////////////////////////////////////////////////////////////////////////////
       body: const Center(
         child: Padding(
@@ -58,7 +60,7 @@ class FacultyLogin extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         onPressed: () {
-          print("Button Pressed");
+          Navigator.pushNamed(context, "/faculty/otp");
         },
         child: Icon(Icons.send, color: Colors.white),
         // mini: true,

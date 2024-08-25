@@ -16,7 +16,7 @@ class _ProfileState extends State<Profile> {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarWidget(context, true, false),
+      appBar: AppBarWidget(context, false, "Profile"),
       body: Container(
         width: screenWidth,
         child: Column(
@@ -26,8 +26,12 @@ class _ProfileState extends State<Profile> {
               margin: EdgeInsets.only(top: 20.0),
               child: CircleAvatar(
                 radius: 70.0,
-                backgroundImage: NetworkImage(
-                    'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+                backgroundColor: Color.fromARGB(255, 226, 226, 226),
+                child: Icon(
+                  Icons.person,
+                  size: 100.0,
+                  color: Colors.black,
+                ),
               ),
             ),
             SizedBox(
@@ -52,7 +56,7 @@ class _ProfileState extends State<Profile> {
               child: RoundedButton(
                   btnName: "Logout",
                   callback: () {
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "/");
                   }),
             )
           ],
