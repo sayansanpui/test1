@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/views/widgets/appbar_section.dart';
 import 'package:my_app/views/widgets/dropdown_menu.dart';
+import 'package:my_app/views/widgets/numtext_menu.dart';
 import 'package:my_app/views/widgets/rounded_button.dart';
 
 class ClassroomCreate extends StatefulWidget {
@@ -20,7 +21,7 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
   String? semester;
   String? semester_type;
   String? class_type;
-  String? inputTotalStudents;
+  String inputTotalStudents = '';
 
   @override
   Widget build(BuildContext context) {
@@ -81,13 +82,13 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarWidget(context, true, true),
+      appBar: AppBarWidget(context, true, "Create Classroom"),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
           padding: const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text("Classroom Details",
@@ -98,6 +99,7 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
               SizedBox(height: 20),
               DropdownMenu_(
                 labelName: "Department in which taken class",
+                hint: "Select Department",
                 onChanged: updateDepartmentName,
                 searchKey: "",
                 width: screenWidth,
@@ -106,14 +108,16 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
               SizedBox(height: 20),
               DropdownMenu_(
                 labelName: "Section",
+                hint: "Select Section",
                 onChanged: updateSection,
                 searchKey: "",
                 width: screenWidth,
-                items: ["NA", "A", "B", "C"],
+                items: ["A", "B", "C", "D", "NA"],
               ),
               SizedBox(height: 20),
               DropdownMenu_(
                 labelName: "Subject Name",
+                hint: "Select Subject Name",
                 onChanged: updateSubjectName,
                 searchKey: "",
                 width: screenWidth,
@@ -122,6 +126,7 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
               SizedBox(height: 20),
               DropdownMenu_(
                   labelName: "Subject Code",
+                  hint: "Select Subject Code",
                   onChanged: updateSubjectCode,
                   searchKey: "",
                   width: screenWidth,
@@ -134,20 +139,31 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
               SizedBox(height: 20),
               DropdownMenu_(
                   labelName: "Session",
+                  hint: "Select Session",
                   onChanged: updateSession,
                   searchKey: "",
                   width: screenWidth,
-                  items: ["2021-2022", "2022-2023", "2023-2024", "2024-2025"]),
+                  items: ["2022-2023", "2023-2024", "2024-2025"]),
               SizedBox(height: 20),
               DropdownMenu_(
                   labelName: "Year",
+                  hint: "Select Year",
                   onChanged: updateYear,
                   searchKey: "",
                   width: screenWidth,
                   items: ["1st", "2nd", "3rd", "4th"]),
               SizedBox(height: 20),
               DropdownMenu_(
+                  labelName: "Semester Type",
+                  hint: "Select Semester Type",
+                  onChanged: updateSemesterType,
+                  searchKey: "",
+                  width: screenWidth,
+                  items: ["Odd", "Even"]),
+              SizedBox(height: 20),
+              DropdownMenu_(
                   labelName: "Semester",
+                  hint: "Select Semester",
                   onChanged: updateSemester,
                   searchKey: "",
                   width: screenWidth,
@@ -163,28 +179,25 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
                   ]),
               SizedBox(height: 20),
               DropdownMenu_(
-                  labelName: "Semester Type",
-                  onChanged: updateSemesterType,
-                  searchKey: "",
-                  width: screenWidth,
-                  items: ["Odd", "Even"]),
-              SizedBox(height: 20),
-              DropdownMenu_(
                   labelName: "Class Type",
+                  hint: "Select Class Type",
                   onChanged: updateClassType,
                   searchKey: "",
                   width: screenWidth,
                   items: ["Theory", "Lab"]),
               SizedBox(height: 20),
-              InputSection(),
-              SizedBox(height: 20),
+              NumTextMenu(
+                labelName: "Total Students",
+                onChanged: (String? value) {
+                  setState(() {
+                    inputTotalStudents = value ?? '';
+                  });
+                },
+                hint: "Enter total students",
+                width: screenWidth,
+              ),
+              SizedBox(height: 30),
               RoundedButton(
-                  padding: 10,
-                  borderRadius: 10,
-                  textStyle: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white),
                   btnName: "Submit",
                   callback: () {
                     print("Department Name: $department_name");
@@ -203,46 +216,6 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
           ),
         ),
       ),
-    );
-  }
-
-  Column InputSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Enter total number of students",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        TextField(
-          onChanged: (String value) {
-            if (int.tryParse(value) != null) {
-              inputTotalStudents = value;
-            }
-          },
-          keyboardType: TextInputType.number,
-          cursorColor: const Color.fromARGB(255, 0, 0, 0),
-          decoration: InputDecoration(
-            hintText: "Enter total number of students",
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: const Color.fromARGB(255, 30, 30, 30), width: 1.0),
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: const Color.fromARGB(255, 0, 0, 0), width: 1.0),
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

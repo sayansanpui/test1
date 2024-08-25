@@ -16,7 +16,7 @@ class DropdownMenu_ extends StatefulWidget {
   DropdownMenu_(
       {super.key,
       required this.labelName,
-      this.hint = "Select An Option",
+      required this.hint,
       this.items = const [],
       this.api,
       this.width = 300,
@@ -96,16 +96,29 @@ class _DropdownMenu_State extends State<DropdownMenu_> {
                       borderRadius: BorderRadius.circular(10.0)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: DropdownButton<String>(
+                    child: DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
                       hint: const Text("Select any value"),
                       value: _selectedItem,
                       isExpanded: true,
                       items: _dropdownItems.map((String item) {
                         return DropdownMenuItem<String>(
                           value: item,
-                          child: Text(
-                            item,
-                            overflow: TextOverflow.ellipsis,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Text(
+                              item,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         );
                       }).toList(),
@@ -115,10 +128,7 @@ class _DropdownMenu_State extends State<DropdownMenu_> {
                           _selectedItem = selectedItem;
                         });
                       },
-                      underline: Container(
-                        height: 0, // Hide the underline
-                        color: Colors.transparent, // Transparent color
-                      ),
+                      dropdownColor: Colors.white,
                     ),
                   ),
                 ),

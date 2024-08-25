@@ -14,7 +14,7 @@ class _FrontPageState extends State<FrontPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarWidget(context, false, false),
+      appBar: AppBarWidget(context, false, "Attendance Management"),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 15, 15, 10),
         child: Align(
@@ -28,14 +28,14 @@ class _FrontPageState extends State<FrontPage> {
                   btnIcon: Image.asset('assets/adminLoginIcon.png',
                       width: 30, height: 30),
                   callback: () {
-                    Navigator.pushNamed(context, "/faculty/classroom");
+                    // Navigator.pushNamed(context, "/faculty/classroom");
                   }),
               BorderButton(
                   btnName: "Faculty Login",
                   btnIcon: Image.asset('assets/account_circle.png',
                       width: 30, height: 30),
                   callback: () {
-                    Navigator.pushNamed(context, "/faculty/classroom");
+                    Navigator.pushNamed(context, "/faculty/login");
                   })
             ],
           ),

@@ -15,49 +15,53 @@ class RoundedButton extends StatelessWidget {
       required this.btnName,
       this.btnIcon,
       this.bgColor = Colors.black,
-      this.textStyle = const TextStyle(color: Colors.white),
-      this.borderRadius = 5.0,
+      this.textStyle = const TextStyle(color: Colors.white, fontSize: 18),
+      this.borderRadius = 10.0,
       required this.callback,
       this.padding = 8.0,
       this.gap = 8.0});
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        callback!();
-      },
-      style: ElevatedButton.styleFrom(
-        // Background color
-        backgroundColor: bgColor,
-        textStyle: textStyle, // Text style
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius!), // Rounded corners
+    return SizedBox(
+      height: 45, // Set the button height
+      child: ElevatedButton(
+        onPressed: () {
+          callback!();
+        },
+        style: ElevatedButton.styleFrom(
+          // Background color
+          backgroundColor: bgColor,
+          textStyle: textStyle, // Text style
+          shape: RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.circular(borderRadius!), // Rounded corners
+          ),
         ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(padding!),
-        child: btnIcon != null
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  btnIcon!,
-                  SizedBox(width: gap), // Space between icon and text
-                  Text(
-                    btnName,
-                    style: textStyle,
-                  ),
-                ],
-              )
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    btnName,
-                    style: textStyle,
-                  ),
-                ],
-              ),
+        child: Padding(
+          padding: EdgeInsets.all(padding!),
+          child: btnIcon != null
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    btnIcon!,
+                    SizedBox(width: gap), // Space between icon and text
+                    Text(
+                      btnName,
+                      style: textStyle,
+                    ),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      btnName,
+                      style: textStyle,
+                    ),
+                  ],
+                ),
+        ),
       ),
     );
   }
