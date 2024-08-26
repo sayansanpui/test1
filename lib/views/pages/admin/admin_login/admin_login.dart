@@ -54,7 +54,7 @@ class _FacultyLoginState extends State<AdminLogin> {
                       ),
                       const SizedBox(height: 20),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           MiniroundedButton(
                             btnName: "Register",

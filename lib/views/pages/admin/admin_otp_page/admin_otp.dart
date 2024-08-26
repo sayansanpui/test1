@@ -54,7 +54,7 @@ class _AdminOtpState extends State<AdminOtp> {
                       ),
                       const SizedBox(height: 20),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           MiniroundedButton(
                             btnName: "Resend",

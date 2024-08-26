@@ -54,7 +54,7 @@ class _FacultyOtpState extends State<FacultyOtp> {
                       ),
                       const SizedBox(height: 20),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           MiniroundedButton(
                             btnName: "Resend",
