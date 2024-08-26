@@ -12,7 +12,7 @@ import 'package:my_app/views/pages/faculty/faculty_home/faculty_home.dart';
 import 'package:my_app/views/pages/faculty/faculty_login/faculty_login.dart';
 import 'package:my_app/views/pages/faculty/faculty_register/faculty_register.dart';
 import 'package:my_app/views/pages/front_page/front_page.dart';
-import 'package:my_app/views/pages/faculty_otp_page/faculty_otp.dart';
+import 'package:my_app/views/pages/faculty/faculty_otp_page/faculty_otp.dart';
 import 'package:my_app/views/pages/profile/profile.dart';
 // import 'package:my_app/views/pages/faculty/faculty_login/faculty_login.dart';
 // import 'package:my_app/views/pages/profile/profile.dart';
