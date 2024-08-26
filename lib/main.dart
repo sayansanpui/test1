@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/views/pages/admin/admin_generate_report/admin_generate_report.dart';
+import 'package:my_app/views/pages/admin/admin_home/admin_home.dart';
+import 'package:my_app/views/pages/admin/admin_login/admin_login.dart';
+import 'package:my_app/views/pages/admin/admin_otp_page/admin_otp.dart';
+import 'package:my_app/views/pages/admin/admin_register/admin_register.dart';
 import 'package:my_app/views/pages/faculty/faculty_classroom/classroom_create.dart';
+import 'package:my_app/views/pages/faculty/faculty_classroom/classroom_takeattendance.dart';
 import 'package:my_app/views/pages/faculty/faculty_classroom/faculty_classroom.dart';
+import 'package:my_app/views/pages/faculty/faculty_generate_report/faculty_generate_report.dart';
 import 'package:my_app/views/pages/faculty/faculty_home/faculty_home.dart';
 import 'package:my_app/views/pages/faculty/faculty_login/faculty_login.dart';
+import 'package:my_app/views/pages/faculty/faculty_register/faculty_register.dart';
 import 'package:my_app/views/pages/front_page/front_page.dart';
-import 'package:my_app/views/pages/otp_page/otp_page.dart';
+import 'package:my_app/views/pages/faculty_otp_page/faculty_otp.dart';
 import 'package:my_app/views/pages/profile/profile.dart';
 // import 'package:my_app/views/pages/faculty/faculty_login/faculty_login.dart';
 // import 'package:my_app/views/pages/profile/profile.dart';
@@ -37,13 +45,21 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "/": (context) => FrontPage(),
+        "/admin/login": (context) => AdminLogin(),
+        "/admin/register": (context) => AdminRegister(),
+        "/admin/otp": (context) => AdminOtp(),
+        "/admin/home": (context) => AdminHome(),
+        "/admin/report": (context) => AdminGenerateReport(),
         "/faculty/login": (context) => FacultyLogin(),
-        "/faculty/otp": (context) => OtpPage(),
+        "/faculty/register": (context) => FacultyRegister(),
+        "/faculty/otp": (context) => FacultyOtp(),
         "/faculty/home": (context) => FacultyHome(),
-        "/faculty/classroom": (context) => FacultyClassroom(),
         "/profile": (context) => Profile(),
-        "/create/classroom": (context) => ClassroomCreate(),
-        "/admin/login": (context) => FacultyLogin(),
+        "/faculty/classroom": (context) => FacultyClassroom(),
+        "/faculty/create/classroom": (context) => ClassroomCreate(),
+        "/faculty/create/takeattendance": (context) =>
+            ClassroomTakeattendance(),
+        "/faculty/report": (context) => FacultyGenerateReport(),
       },
     );
   }

@@ -3,14 +3,14 @@ import 'package:my_app/views/widgets/appbar_section.dart';
 import 'package:my_app/views/widgets/minirounded_button.dart';
 import 'package:my_app/views/widgets/text_menu.dart';
 
-class FacultyLogin extends StatefulWidget {
-  const FacultyLogin({super.key});
+class FacultyOtp extends StatefulWidget {
+  const FacultyOtp({super.key});
 
   @override
-  _FacultyLoginState createState() => _FacultyLoginState();
+  _FacultyOtpState createState() => _FacultyOtpState();
 }
 
-class _FacultyLoginState extends State<FacultyLogin> {
+class _FacultyOtpState extends State<FacultyOtp> {
   String email = '';
 
   void updateEmail(String? newValue) {
@@ -25,7 +25,7 @@ class _FacultyLoginState extends State<FacultyLogin> {
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      appBar: AppBarWidget(context, false, "Faculty Login"),
+      appBar: AppBarWidget(context, false, "OTP Verification"),
       body: Center(
         child: SizedBox(
           width: 600,
@@ -40,15 +40,15 @@ class _FacultyLoginState extends State<FacultyLogin> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      const Text("Faculty Login",
+                      const Text("OTP Verification",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 28,
                               fontWeight: FontWeight.w600)),
                       const SizedBox(height: 20),
                       TextMenu(
-                        labelName: "Email",
-                        hint: "Enter your college mail",
+                        labelName: "OTP",
+                        hint: "Enter OTP",
                         onChanged: updateEmail,
                         width: screenWidth,
                       ),
@@ -57,17 +57,17 @@ class _FacultyLoginState extends State<FacultyLogin> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           MiniroundedButton(
-                            btnName: "Register",
+                            btnName: "Resend",
                             width: 150, // Adjust width as needed
                             callback: () {
-                              Navigator.pushNamed(context, "/faculty/register");
+                              // Navigator.pushNamed(context, "/");
                             },
                           ),
                           MiniroundedButton(
-                            btnName: "Log in",
+                            btnName: "Verify",
                             width: 150, // Adjust width as needed
                             callback: () {
-                              Navigator.pushNamed(context, "/faculty/otp");
+                              Navigator.pushNamed(context, "/faculty/home");
                             },
                           ),
                         ],

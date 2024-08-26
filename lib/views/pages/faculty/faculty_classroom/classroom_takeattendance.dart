@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/views/widgets/appbar_section.dart';
+import 'package:my_app/views/widgets/date_menu.dart';
 import 'package:my_app/views/widgets/dropdown_menu.dart';
+import 'package:my_app/views/widgets/multipleselect_menu.dart';
 import 'package:my_app/views/widgets/numtext_menu.dart';
 import 'package:my_app/views/widgets/rounded_button.dart';
+import 'package:my_app/views/widgets/text_menu.dart';
 
-class ClassroomCreate extends StatefulWidget {
-  const ClassroomCreate({super.key});
+class ClassroomTakeattendance extends StatefulWidget {
+  const ClassroomTakeattendance({super.key});
 
   @override
-  State<ClassroomCreate> createState() => _ClassroomCreateState();
+  State<ClassroomTakeattendance> createState() =>
+      _ClassroomTakeattendanceState();
 }
 
-class _ClassroomCreateState extends State<ClassroomCreate> {
+class _ClassroomTakeattendanceState extends State<ClassroomTakeattendance> {
   String? department_name;
   String? section;
   String? subject_name;
@@ -23,67 +27,74 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
   String? class_type;
   String inputTotalStudents = '';
   String email = '';
+  String? date;
+
+  void updateDepartmentName(String? newValue) {
+    setState(() {
+      department_name = newValue;
+    });
+  }
+
+  void updateSection(String? newValue) {
+    setState(() {
+      section = newValue;
+    });
+  }
+
+  void updateSubjectName(String? newValue) {
+    setState(() {
+      subject_name = newValue;
+    });
+  }
+
+  void updateSubjectCode(String? newValue) {
+    setState(() {
+      subject_code = newValue;
+    });
+  }
+
+  void updateSession(String? newValue) {
+    setState(() {
+      session = newValue;
+    });
+  }
+
+  void updateYear(String? newValue) {
+    setState(() {
+      year = newValue;
+    });
+  }
+
+  void updateSemester(String? newValue) {
+    setState(() {
+      semester = newValue;
+    });
+  }
+
+  void updateSemesterType(String? newValue) {
+    setState(() {
+      semester_type = newValue;
+    });
+  }
+
+  void updateClassType(String? newValue) {
+    setState(() {
+      class_type = newValue;
+    });
+  }
+
+  void onChanged(String? newValue) {
+    setState(() {
+      date = newValue;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    void updateDepartmentName(String? newValue) {
-      setState(() {
-        department_name = newValue;
-      });
-    }
-
-    void updateSection(String? newValue) {
-      setState(() {
-        section = newValue;
-      });
-    }
-
-    void updateSubjectName(String? newValue) {
-      setState(() {
-        subject_name = newValue;
-      });
-    }
-
-    void updateSubjectCode(String? newValue) {
-      setState(() {
-        subject_code = newValue;
-      });
-    }
-
-    void updateSession(String? newValue) {
-      setState(() {
-        session = newValue;
-      });
-    }
-
-    void updateYear(String? newValue) {
-      setState(() {
-        year = newValue;
-      });
-    }
-
-    void updateSemester(String? newValue) {
-      setState(() {
-        semester = newValue;
-      });
-    }
-
-    void updateSemesterType(String? newValue) {
-      setState(() {
-        semester_type = newValue;
-      });
-    }
-
-    void updateClassType(String? newValue) {
-      setState(() {
-        class_type = newValue;
-      });
-    }
-
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      appBar: AppBarWidget(context, true, "Create Classroom"),
+      appBar: AppBarWidget(context, true, "Attendance"),
       body: Center(
         child: SizedBox(
           width: 600,
@@ -98,11 +109,13 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Text("Classroom Details",
+                      const Text("Take Attendance",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 28,
                               fontWeight: FontWeight.w800)),
+                      const SizedBox(height: 20),
+                      DateMenu(labelName: "Date", onChanged: onChanged),
                       const SizedBox(height: 20),
                       DropdownMenu_(
                         labelName: "Department in which taken class",
@@ -121,41 +134,6 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
                         width: screenWidth,
                         items: ["A", "B", "C", "D", "NA"],
                       ),
-                      const SizedBox(height: 20),
-                      DropdownMenu_(
-                        labelName: "Subject Name",
-                        hint: "Select Subject Name",
-                        onChanged: updateSubjectName,
-                        searchKey: "",
-                        width: screenWidth,
-                        items: [
-                          "Compiler Design",
-                          "Data Structures",
-                          "DBMS",
-                          "OS"
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      DropdownMenu_(
-                          labelName: "Subject Code",
-                          hint: "Select Subject Code",
-                          onChanged: updateSubjectCode,
-                          searchKey: "",
-                          width: screenWidth,
-                          items: [
-                            "PCC-CS-401",
-                            "PCC-CS-402",
-                            "PCC-CS-403",
-                            "PCC-CS-404"
-                          ]),
-                      const SizedBox(height: 20),
-                      DropdownMenu_(
-                          labelName: "Session",
-                          hint: "Select Session",
-                          onChanged: updateSession,
-                          searchKey: "",
-                          width: screenWidth,
-                          items: ["2022-2023", "2023-2024", "2024-2025"]),
                       const SizedBox(height: 20),
                       DropdownMenu_(
                           labelName: "Year",
@@ -198,31 +176,49 @@ class _ClassroomCreateState extends State<ClassroomCreate> {
                           width: screenWidth,
                           items: ["Theory", "Lab"]),
                       const SizedBox(height: 20),
+                      MultipleSelectMenu(
+                        labelName: 'Period',
+                        hint: 'Select Period',
+                        items: [
+                          '1st',
+                          '2nd',
+                          '3rd',
+                          '4th',
+                          '5th',
+                          '6th',
+                          '7th',
+                          '8th',
+                          'SPC',
+                        ],
+                        onChanged: (selectedItems) {
+                          print('Selected Items: $selectedItems');
+                        },
+                        searchKey: 'name',
+                      ),
+                      const SizedBox(height: 20),
+                      TextMenu(
+                        labelName: "Special Case",
+                        hint: "Comment here",
+                        onChanged: onChanged,
+                        width: screenWidth,
+                        height: 120,
+                      ),
+                      const SizedBox(height: 20),
                       NumTextMenu(
-                        labelName: "Total Students",
+                        labelName: "Total Attendance",
                         onChanged: (String? value) {
                           setState(() {
                             inputTotalStudents = value ?? '';
                           });
                         },
-                        hint: "Enter total students",
+                        hint: "Enter total attendance",
                         width: screenWidth,
                       ),
                       const SizedBox(height: 30),
                       RoundedButton(
                           btnName: "Submit",
                           callback: () {
-                            print("Department Name: $department_name");
-                            print("Section: $section");
-                            print("Subject Name: $subject_name");
-                            print("Subject Code: $subject_code");
-                            print("Session: $session");
-                            print("Year: $year");
-                            print("Semester: $semester");
-                            print("Semester Type: $semester_type");
-                            print("Class Type: $class_type");
-                            print("Total Students: $inputTotalStudents");
-                            print("Email: $email");
+                            // Navigator.pushNamed(context, "/");
                           }),
                       const SizedBox(height: 30),
                     ],
