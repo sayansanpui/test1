@@ -17,7 +17,7 @@ class ClassroomOption extends StatelessWidget {
             ),
           ),
           backgroundColor: WidgetStateProperty.all<Color>(
-            const Color.fromARGB(255, 226, 226, 226),
+            const Color.fromARGB(255, 255, 255, 255),
           ),
         ),
         child: Padding(
@@ -88,7 +88,7 @@ class ClassroomOption extends StatelessWidget {
   Container Tag(String str) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 255, 255),
+        color: const Color.fromARGB(255, 226, 226, 226),
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: Padding(

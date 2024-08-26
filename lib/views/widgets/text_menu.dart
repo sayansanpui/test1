@@ -2,28 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class NumTextMenu extends StatefulWidget {
+class TextMenu extends StatefulWidget {
   final String labelName;
   final String? hint;
   final String? api;
   final double? width;
+  final double? height;
   final ValueChanged<String?> onChanged;
 
-  const NumTextMenu({
+  const TextMenu({
     Key? key,
     required this.labelName,
-    this.hint = "Enter total number of students",
+    required this.hint,
     this.api,
-    this.width = 300,
+    this.width = 500,
+    this.height = 55, // Default height value
+    // required this.height, // Default height value is 55
     required this.onChanged,
   }) : super(key: key);
 
   @override
-  _NumTextMenuState createState() => _NumTextMenuState();
+  _TextMenuState createState() => _TextMenuState();
 }
 
-class _NumTextMenuState extends State<NumTextMenu> {
-  String inputTotalStudents = '';
+class _TextMenuState extends State<TextMenu> {
+  String inputText = '';
   bool _isLoading = false;
 
   @override
@@ -43,10 +46,10 @@ class _NumTextMenuState extends State<NumTextMenu> {
       final response = await http.get(Uri.parse(widget.api!));
 
       if (response.statusCode == 200) {
-        // Assuming the API returns a single value for the number of students
+        // Assuming the API returns a single value for the text
         String data = jsonDecode(response.body);
         setState(() {
-          inputTotalStudents = data;
+          inputText = data;
           _isLoading = false;
         });
         widget.onChanged(data);
@@ -79,6 +82,7 @@ class _NumTextMenuState extends State<NumTextMenu> {
               ? const Center(child: CircularProgressIndicator())
               : Container(
                   width: widget.width,
+                  height: widget.height, // Use the height parameter
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.black,
@@ -90,14 +94,12 @@ class _NumTextMenuState extends State<NumTextMenu> {
                     padding: const EdgeInsets.only(left: 25, right: 10),
                     child: TextField(
                       onChanged: (String value) {
-                        if (int.tryParse(value) != null) {
-                          setState(() {
-                            inputTotalStudents = value;
-                          });
-                          widget.onChanged(value);
-                        }
+                        setState(() {
+                          inputText = value;
+                        });
+                        widget.onChanged(value);
                       },
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                       cursorColor: const Color.fromARGB(255, 0, 0, 0),
                       decoration: InputDecoration(
                         hintText: widget.hint,

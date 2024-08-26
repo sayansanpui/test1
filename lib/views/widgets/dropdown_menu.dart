@@ -19,7 +19,7 @@ class DropdownMenu_ extends StatefulWidget {
       required this.hint,
       this.items = const [],
       this.api,
-      this.width = 300,
+      this.width,
       this.firstItem,
       required this.onChanged,
       required this.searchKey});
@@ -54,8 +54,9 @@ class _DropdownMenu_State extends State<DropdownMenu_> {
         setState(() {
           _dropdownItems =
               data.map((item) => item[widget.searchKey].toString()).toList();
-          _dropdownItems.insert(0, widget.firstItem!);
-
+          if (widget.firstItem != null) {
+            _dropdownItems.insert(0, widget.firstItem!);
+          }
           _isLoading = false; // Data fetched, stop loading
         });
       } else {
@@ -79,7 +80,7 @@ class _DropdownMenu_State extends State<DropdownMenu_> {
         children: [
           Text(
             widget.labelName,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
           ),
           const SizedBox(
             height: 15,
@@ -105,7 +106,7 @@ class _DropdownMenu_State extends State<DropdownMenu_> {
                           borderSide: BorderSide.none,
                         ),
                       ),
-                      hint: const Text("Select any value"),
+                      hint: Text(widget.hint ?? "Select any value"),
                       value: _selectedItem,
                       isExpanded: true,
                       items: _dropdownItems.map((String item) {

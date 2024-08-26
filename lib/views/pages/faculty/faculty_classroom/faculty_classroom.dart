@@ -49,7 +49,7 @@ class _FacultyClassroomState extends State<FacultyClassroom> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[200],
       appBar: AppBarWidget(context, true, "Classroom"),
       body: _isLoading
           ? Center(
@@ -73,7 +73,7 @@ class _FacultyClassroomState extends State<FacultyClassroom> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         onPressed: () {
-          Navigator.pushNamed(context, "/create/classroom");
+          Navigator.pushNamed(context, "/faculty/create/classroom");
         },
         child: Icon(
           Icons.add,

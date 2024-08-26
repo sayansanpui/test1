@@ -13,7 +13,7 @@ class _FacultyHomeState extends State<FacultyHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[200],
       appBar: AppBarWidget(context, true, "Attendance Management"),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 15, 15, 10),
@@ -35,7 +35,7 @@ class _FacultyHomeState extends State<FacultyHome> {
                   btnIcon: Image.asset('assets/generateReport.png',
                       width: 30, height: 30),
                   callback: () {
-                    // Navigator.pushNamed(context, "/faculty/login");
+                    Navigator.pushNamed(context, "/faculty/report");
                   })
             ],
           ),
